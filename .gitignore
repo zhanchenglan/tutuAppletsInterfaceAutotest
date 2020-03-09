@@ -1,0 +1,6 @@
+/venv
+/.idea
+/common/__pycache__
+/interface/__pycache__
+*.pyc
+
