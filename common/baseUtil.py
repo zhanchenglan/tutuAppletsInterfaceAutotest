@@ -12,6 +12,7 @@ import datetime
 import random
 import string
 import sys, os
+from faker import Faker
 
 class baseUtils:
     def __init__(self):
@@ -92,6 +93,10 @@ class baseUtils:
         else:
             return None
 
+    def get_random_content(self):
+        Myfake = Faker(locale='zh_CN')
+        content = Myfake.sentence(nb_words=6, variable_nb_words=True, ext_word_list=None)
+        return content
 
 
     def getProjectPath(self):

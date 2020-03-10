@@ -89,7 +89,7 @@ class TestgetAlbumsCommentReplySimpleListFunc(unittest.TestCase):
                                                   self.config.get("AlbumsComment", "addAlbumsCommentURL"), self.config.get("lang", "zh"),
                                                   self.base.getTimeStamp(),
                                                   self.config.get("clientVersionInfo", "clientVersionInfo_ch_Android"),access_token)
-        content = self.base.get_random_string(5)
+        content = self.base.get_random_content()
         result_addAlbumsComment = self.addAlbumsComment.send_request_addAlbumsComment(addAlbumsCommentURL,albumsId,content)
 
         self.assertEqual(result_addAlbumsComment["stateCode"], 200)
@@ -119,7 +119,7 @@ class TestgetAlbumsCommentReplySimpleListFunc(unittest.TestCase):
         toUid = result_getAlbumsCommentList["data"][0]["uid"]
         toUidNickname = result_getAlbumsCommentList["data"][0]["nickname"]
         toUidHeadPortrait = result_getAlbumsCommentList["data"][0]["headPortrait"]
-        content = "回复"+self.base.get_random_string(5)
+        content = "回复"+self.base.get_random_content()
         result_addAlbumsCommentReply = self.addAlbumsCommentReply.send_request_addAlbumsCommentReply(addAlbumsCommentReplyURL,commentId,content,replyId,replyType,toUid,toUidNickname,toUidHeadPortrait)
 
         self.assertEqual(result_addAlbumsCommentReply["stateCode"], 200)

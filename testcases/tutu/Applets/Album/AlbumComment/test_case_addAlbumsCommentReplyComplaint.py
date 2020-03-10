@@ -88,7 +88,7 @@ class TestaddAlbumsCommentReplyComplaintFunc(unittest.TestCase):
                                                   self.config.get("AlbumsComment", "addAlbumsCommentURL"), self.config.get("lang", "zh"),
                                                   self.base.getTimeStamp(),
                                                   self.config.get("clientVersionInfo", "clientVersionInfo_ch_Android"),access_token)
-        content = self.base.get_random_string(5)
+        content = self.base.get_random_content()
         result_addAlbumsComment = self.addAlbumsComment.send_request_addAlbumsComment(addAlbumsCommentURL,albumsId,content)
 
         self.assertEqual(result_addAlbumsComment["stateCode"], 200)
