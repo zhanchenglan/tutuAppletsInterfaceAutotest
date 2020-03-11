@@ -107,7 +107,7 @@ if __name__ == "__main__":
 
     failureNumber = result.failure_count
     error_failure_number = errorNumber + failureNumber
-    if error_failure_number:
+    if error_failure_number > 2:
         exit(1)
 
 
