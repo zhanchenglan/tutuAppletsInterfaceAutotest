@@ -25,11 +25,11 @@ config = FileParser(projectPath)
 # print(config)
 # print("初始化配置成功")
 
-host = config.get("mysql_dev","host")
-port = config.get("mysql_dev","port")
-user = config.get("mysql_dev","user")
-password = config.get("mysql_dev","password")
-db_platform = config.get("mysql_dev","db_platform")
+host = config.get("mysql_uat","host")
+port = config.get("mysql_uat","port")
+user = config.get("mysql_uat","user")
+password = config.get("mysql_uat","password")
+db_platform = config.get("mysql_uat","db_platform")
 
 mysql = mysqlUtils(host,port,user,password,db_platform)
 
