@@ -25,11 +25,11 @@ config = FileParser(projectPath)
 # print(config)
 # print("初始化配置成功")
 
-host = config.get("mysql_uat","host")
-port = config.get("mysql_uat","port")
-user = config.get("mysql_uat","user")
-password = config.get("mysql_uat","password")
-db_platform = config.get("mysql_uat","db_platform")
+host = config.get("mysql_prod","host")
+port = config.get("mysql_prod","port")
+user = config.get("mysql_prod","user")
+password = config.get("mysql_prod","password")
+db_platform = config.get("mysql_prod","db_platform")
 
 mysql = mysqlUtils(host,port,user,password,db_platform)
 
@@ -96,7 +96,7 @@ if __name__ == "__main__":
     area = 1
     system_type = 3
     business_type = 1
-    task_name = "uat-tutuApplets"
+    task_name = "prod-tutuApplets"
     #2 - 执行成功，3 - 执行失败(int类型)
 
     exe_result = 2
