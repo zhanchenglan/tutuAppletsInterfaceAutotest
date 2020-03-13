@@ -1,16 +1,16 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-# @Time    : 2019/11/21 15:43
+# @Time    : 2020/3/12 9:57
 # @Author  : Durat
 # @Email   : durant.zeng@sunvalley.com.cn
-# @File    : test_case_updateAlbumsReplyMessage.py
+# @File    : test_case_deleteAlbumsComment.py
 # @Software: PyCharm
+
 
 import sys, os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(BASE_DIR)
 import unittest
-import random
 from common.FileParsing import FileParser
 from common.baseUtil import baseUtils
 from interface.base.login.authentication import Authentication
@@ -18,14 +18,12 @@ from interface.tutu.Album.getAlbumsList4Front import getAlbumsList4Front
 from interface.tutu.Album.getAlbumsDeatil4Front import getAlbumsDeatil4Front
 from interface.tutu.Album.AlbumComment.getAlbumsCommentList import getAlbumsCommentList
 from interface.tutu.Album.AlbumComment.addAlbumsComment import addAlbumsComment
-from interface.tutu.Album.AlbumComment.addAlbumsCommentReply import addAlbumsCommentReply
-from interface.tutu.Album.AlbumComment.getAlbumsCommentReplyMessages import getAlbumsCommentReplyMessages
-from interface.tutu.Album.AlbumComment.updateAlbumsReplyMessage import updateAlbumsReplyMessage
+from interface.tutu.Album.AlbumComment.deleteAlbumsComment import deleteAlbumsComment
 from common.excelUtil import excelUtil
 
 
-class TestgetAlbumsCommentReplyMessagesFunc(unittest.TestCase):
-    """Test getAlbumsCommentReplyMessages.py"""
+class TestdeleteAlbumsCommentFunc(unittest.TestCase):
+    """Test deleteAlbumsComment.py"""
 
     def setUp(self):
         self.base = baseUtils()
@@ -38,13 +36,12 @@ class TestgetAlbumsCommentReplyMessagesFunc(unittest.TestCase):
         self.AlbumsDeatil = getAlbumsDeatil4Front()
         self.getAlbumsCommentList = getAlbumsCommentList()
         self.addAlbumsComment = addAlbumsComment()
-        self.addAlbumsCommentReply = addAlbumsCommentReply()
-        self.getAlbumsCommentReplyMessages = getAlbumsCommentReplyMessages()
-        self.updateAlbumsReplyMessage = updateAlbumsReplyMessage()
+        self.deleteAlbumsComment = deleteAlbumsComment()
 
-    @unittest.skip("不执行")
-    def test_updateAlbumsReplyMessage_tutu_Applets_001(self):
-        '''美甲涂涂Applets端_个人中心—我的消息状态修改_正常更改_手机号密码登录_001'''
+    @unittest.skip("暂时遮蔽")
+    def test_deleteAlbumsComment_tutu_Applets_001(self):
+        '''美甲涂涂Applets端_删除特辑评论_正常发表_手机号密码登录_001'''
+        #安卓登录
         TestData = self.ex.getDict(2, 27, 7, self.testData)
         currentPage = TestData["currentPage"]
         pageSize = TestData["pageSize"]
@@ -70,7 +67,7 @@ class TestgetAlbumsCommentReplyMessagesFunc(unittest.TestCase):
         self.assertEqual(result_ListQuery["stateMsg"], "OK")
         self.assertIsNotNone(result_ListQuery["data"])
 
-        # 获取第一个特辑ID，作为特辑详情的参数
+        # 获取最后一个特辑ID，作为特辑详情的参数
         albumsId = result_ListQuery["data"][-1]["albumsId"]
 
         #专辑详情
@@ -85,6 +82,16 @@ class TestgetAlbumsCommentReplyMessagesFunc(unittest.TestCase):
         self.assertEqual(result_AlbumsDeatil["stateMsg"], "OK")
         self.assertEqual(result_AlbumsDeatil["data"]["albumsId"],albumsId)
 
+        #专辑评论列表查询
+        getAlbumsCommentListURL = self.getAlbumsCommentList.get_getAlbumsCommentListURL(self.config.get('imi_base_url_ch', 'base_url_prod'),
+                                                  self.config.get("AlbumsComment", "getAlbumsCommentListURL"), self.config.get("lang", "zh"),
+                                                  self.base.getTimeStamp(),
+                                                  self.config.get("clientVersionInfo", "clientVersionInfo_ch_Android"),access_token)
+
+        result_getAlbumsCommentList = self.getAlbumsCommentList.send_request_getAlbumsCommentList(getAlbumsCommentListURL,albumsId,currentPage,pageSize)
+
+        self.assertEqual(result_getAlbumsCommentList["stateCode"], 200)
+        self.assertEqual(result_getAlbumsCommentList["stateMsg"], "OK")
 
         #发表专辑评论
         addAlbumsCommentURL = self.addAlbumsComment.get_addAlbumsCommentURL(self.config.get('imi_base_url_ch', 'base_url_prod'),
@@ -96,6 +103,7 @@ class TestgetAlbumsCommentReplyMessagesFunc(unittest.TestCase):
 
         self.assertEqual(result_addAlbumsComment["stateCode"], 200)
         self.assertEqual(result_addAlbumsComment["stateMsg"], "OK")
+
 
         #专辑评论列表查询
         getAlbumsCommentListURL = self.getAlbumsCommentList.get_getAlbumsCommentListURL(self.config.get('imi_base_url_ch', 'base_url_prod'),
@@ -109,49 +117,19 @@ class TestgetAlbumsCommentReplyMessagesFunc(unittest.TestCase):
         self.assertEqual(result_getAlbumsCommentList["stateMsg"], "OK")
 
 
-        #回复专辑评论
-        addAlbumsCommentReplyURL = self.addAlbumsCommentReply.get_addAlbumsCommentReplyURL(self.config.get('imi_base_url_ch', 'base_url_prod'),
-                                                  self.config.get("AlbumsComment", "addAlbumsCommentReplyURL"), self.config.get("lang", "zh"),
-                                                  self.base.getTimeStamp(),self.config.get("clientVersionInfo", "clientVersionInfo_ch_Android"),access_token)
 
+        #删除专辑评论
+        deleteAlbumsCommentURL = self.deleteAlbumsComment.get_deleteAlbumsCommentURL(self.config.get('imi_base_url_ch', 'base_url_prod'),
+                                                  self.config.get("AlbumsComment", "deleteAlbumsCommentURL"), self.config.get("lang", "zh"),
+                                                  self.base.getTimeStamp(),
+                                                  self.config.get("clientVersionInfo", "clientVersionInfo_ch_Android"),access_token)
 
-        commentId = result_getAlbumsCommentList["data"][0]["id"]
-        replyId = commentId
-        replyType = "2"
-        toUid = result_getAlbumsCommentList["data"][0]["uid"]
-        toUidNickname = result_getAlbumsCommentList["data"][0]["nickname"]
-        toUidHeadPortrait = result_getAlbumsCommentList["data"][0]["headPortrait"]
-        content = "回复"+self.base.get_random_content()
-        result_addAlbumsCommentReply = self.addAlbumsCommentReply.send_request_addAlbumsCommentReply(addAlbumsCommentReplyURL,commentId,content,replyId,replyType,toUid,toUidNickname,toUidHeadPortrait)
+        commentId = self.base.get_commentIDORreplyID(result_getAlbumsCommentList,content)
+        completeDel = True
+        result_addAlbumsComment = self.deleteAlbumsComment.send_request_deleteAlbumsComment(deleteAlbumsCommentURL,commentId,completeDel)
 
-        self.assertEqual(result_addAlbumsCommentReply["stateCode"], 200)
-        self.assertEqual(result_addAlbumsCommentReply["stateMsg"], "OK")
-
-        #个人中心---消息查看
-        getAlbumsCommentReplyMessagesURL = self.getAlbumsCommentReplyMessages.get_getAlbumsCommentReplyMessagesURL(self.config.get('imi_base_url_ch', 'base_url_prod'),
-                                                  self.config.get("AlbumsComment", "getAlbumsCommentReplyMessagesURL"), self.config.get("lang", "zh"),
-                                                  self.base.getTimeStamp(),self.config.get("clientVersionInfo", "clientVersionInfo_ch_Android"),access_token)
-
-        result_getAlbumsCommentReplyMessages = self.getAlbumsCommentReplyMessages.send_request_getAlbumsCommentReplyMessages(getAlbumsCommentReplyMessagesURL,currentPage,pageSize)
-
-        self.assertEqual(result_getAlbumsCommentReplyMessages["stateCode"], 200)
-        self.assertEqual(result_getAlbumsCommentReplyMessages["stateMsg"], "OK")
-
-        #个人中心---消息更改
-        updateAlbumsReplyMessageURL = self.updateAlbumsReplyMessage.get_updateAlbumsReplyMessageURL(self.config.get('imi_base_url_ch', 'base_url_prod'),
-                                                  self.config.get("AlbumsComment", "updateAlbumsReplyMessageURL"), self.config.get("lang", "zh"),
-                                                  self.base.getTimeStamp(),self.config.get("clientVersionInfo", "clientVersionInfo_ch_Android"),access_token)
-
-
-        replyId = result_getAlbumsCommentReplyMessages["data"][0]["id"]
-        readStatus = 1
-        readDeleteStatusList = [0,1]
-
-        result_updateAlbumsReplyMessage = self.updateAlbumsReplyMessage.send_request_updateAlbumsReplyMessage(updateAlbumsReplyMessageURL,replyId,readStatus,random.choice(readDeleteStatusList))
-
-        self.assertEqual(result_updateAlbumsReplyMessage["stateCode"], 200)
-        self.assertEqual(result_updateAlbumsReplyMessage["stateMsg"], "OK")
-
+        self.assertEqual(result_addAlbumsComment["stateCode"], 200)
+        self.assertEqual(result_addAlbumsComment["stateMsg"], "OK")
 
     def tearDown(self):
         pass

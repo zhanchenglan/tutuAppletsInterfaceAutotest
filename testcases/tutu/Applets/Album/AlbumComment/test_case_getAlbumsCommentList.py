@@ -36,6 +36,7 @@ class TestgetAlbumsCommentListFunc(unittest.TestCase):
         self.getAlbumsCommentList = getAlbumsCommentList()
 
 
+    @unittest.skip("暂时遮蔽")
     def test_getAlbumsCommentList_tutu_Applets_001(self):
         '''美甲涂涂Applets端_专辑评论列表查询_正常查询_手机号密码登录_001'''
         #安卓登录
@@ -80,16 +81,16 @@ class TestgetAlbumsCommentListFunc(unittest.TestCase):
         self.assertEqual(result_AlbumsDeatil["data"]["albumsId"],albumsId)
 
 
-        #发表专辑评论
-        addAlbumsCommentURL = self.addAlbumsComment.get_addAlbumsCommentURL(self.config.get('imi_base_url_ch', 'base_url_prod'),
-                                                  self.config.get("AlbumsComment", "addAlbumsCommentURL"), self.config.get("lang", "zh"),
-                                                  self.base.getTimeStamp(),
-                                                  self.config.get("clientVersionInfo", "clientVersionInfo_ch_Android"),access_token)
-        content = self.base.get_random_content()
-        result_addAlbumsComment = self.addAlbumsComment.send_request_addAlbumsComment(addAlbumsCommentURL,albumsId,content)
-
-        self.assertEqual(result_addAlbumsComment["stateCode"], 200)
-        self.assertEqual(result_addAlbumsComment["stateMsg"], "OK")
+        # #发表专辑评论
+        # addAlbumsCommentURL = self.addAlbumsComment.get_addAlbumsCommentURL(self.config.get('imi_base_url_ch', 'base_url_prod'),
+        #                                           self.config.get("AlbumsComment", "addAlbumsCommentURL"), self.config.get("lang", "zh"),
+        #                                           self.base.getTimeStamp(),
+        #                                           self.config.get("clientVersionInfo", "clientVersionInfo_ch_Android"),access_token)
+        # content = self.base.get_random_content()
+        # result_addAlbumsComment = self.addAlbumsComment.send_request_addAlbumsComment(addAlbumsCommentURL,albumsId,content)
+        #
+        # self.assertEqual(result_addAlbumsComment["stateCode"], 200)
+        # self.assertEqual(result_addAlbumsComment["stateMsg"], "OK")
 
         #专辑评论列表查询
         getAlbumsCommentListURL = self.getAlbumsCommentList.get_getAlbumsCommentListURL(self.config.get('imi_base_url_ch', 'base_url_prod'),

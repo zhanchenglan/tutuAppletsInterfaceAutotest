@@ -42,7 +42,7 @@ class TestgetAlbumsCommentReplyMessagesFunc(unittest.TestCase):
         self.addAlbumsCommentReply = addAlbumsCommentReply()
         self.getAlbumsCommentReplyMessages = getAlbumsCommentReplyMessages()
 
-
+    @unittest.skip("不执行")
     def test_getAlbumsCommentReplyMessages_tutu_Applets_001(self):
         '''美甲涂涂Applets端_个人中心—我的消息查看_正常查询_手机号密码登录_001'''
         TestData = self.ex.getDict(2, 27, 7, self.testData)

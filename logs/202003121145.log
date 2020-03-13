@@ -1,0 +1,8 @@
+2020-03-12 11:45:55,687 - excelUtil - INFO - 测试数据为:{'phone': '13417335080', 'password': '123456', 'currentPage': '1', 'pageSize': '15'}
+2020-03-12 11:45:55,688 - Authentication - INFO - 美甲涂涂小程序普通端鉴权的参数为{'client_id': 'f9c8218ff78a4e8daa6f014b20c61be2', 'client_secret': 'c3d72eb29df7fd295b734c24f1e8aa43', 'grant_type': 'password', 'mobile': '13417335080', 'password': 'e10adc3949ba59abbe56e057f20f883e', 'auth_type': 'mobile_password', 'scope': 'all', 'product_line_id': '46981435671117824', 'imei': 'IMEI_1568613543758', 'device_name': 'EVA-AL10'}
+2020-03-12 11:45:55,689 - Authentication - INFO - AuthenticationURL的值为:https://mi-api-dev.nailtutu.com/oauth/login?lang=zh&timeStamp=20200312114555&clientVersionInfo=android_app_ch_1.0.4
+2020-03-12 11:45:55,994 - Authentication - INFO - 返回的参数为：{'stateCode': 200, 'stateMsg': 'OK', 'data': {'access_token': 'e994744a-0e14-48ee-a676-6ceafd374e74', 'token_type': 'bearer', 'refresh_token': '438bfee1-9aa5-480b-ad63-fd84f30fe370', 'expires_in': 2586033, 'scope': 'all'}}
+2020-03-12 11:45:55,995 - Authentication - INFO - 登录成功
+2020-03-12 11:45:55,995 - getAlbumsList4Front - INFO - url为:https://mi-api-dev.nailtutu.com/imi/tOcAlbumsInfo/getAlbumsList4Front?lang=zh&timeStamp=20200312114555&clientVersionInfo=android_app_ch_1.0.4&access_token=e994744a-0e14-48ee-a676-6ceafd374e74
+2020-03-12 11:45:55,996 - getAlbumsList4Front - INFO - 请求的参数为:{'allNailSuitFlag': False, 'pageSize': '15', 'currentPage': '1', 'albumsTagId': None}
+2020-03-12 11:45:56,117 - getAlbumsList4Front - INFO - 返回的参数为:{'timestamp': '2020-03-12T03:45:56.135+0000', 'status': 500, 'error': 'Internal Server Error', 'message': 'GENERAL'}

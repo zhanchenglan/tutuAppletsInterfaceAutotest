@@ -122,6 +122,35 @@ class baseUtils:
         finally:
             return result
 
+
+    def get_commentIDORreplyID(self,dict,content):
+        result = []
+        try:
+            data = dict.get('data')
+            for lst in data:
+                res = lst.get("content")
+                if res == content:
+                    result.append(lst.get('id'))
+        except:
+            raise Exception('error')
+        finally:
+            return result[0]
+
+    def get_commentUID(self,dict,content):
+        result = []
+        try:
+            data = dict.get('data')
+            for lst in data:
+                res = lst.get("content")
+                if res == content:
+                    result.append(lst.get('uid'))
+        except:
+            raise Exception('error')
+        finally:
+            return result[0]
+
+
+
     def get_nailSuitStatus_for_1(self,dict):
         result = []
         try:
@@ -165,230 +194,93 @@ if __name__ == "__main__":
     # print(type(BU.getToDay()))
 
 
-
-
-#     mm = {
-# 	'stateCode': 200,
-# 	'stateMsg': 'OK',
-# 	'currentPage': 1,
-# 	'pageSize': 15,
-# 	'totalNum': 187,
-# 	'totalPage': 13,
-# 	'data': [{
-# 		'albumsId': 'd426909943f249a0b613b516a5ed12f1',
-# 		'waterfallFlowUrl': '/tutu/system/20191021112224809_261668.jpg',
-# 		'waterfallFlowThumbnailUrl': '/tutu/system/20191021112224809_261668.jpg_360x360.jpg',
-# 		'galleryUrl': '/tutu/system/20191021112230120_887818.jpg',
-# 		'galleryThumbnailUrl': '/tutu/system/20191021112230120_887818.jpg_500x500.jpg',
-# 		'albumsTitle': '骷髅狂欢',
-# 		'authorNickname': 'Cony',
-# 		'authorHeadPortrait': '/tutu/system/20191021102639725_569239.jpg',
-# 		'authorHeadPortraitThumbnail': '/tutu/system/20191021102639725_569239.jpg_100x100.jpg',
-# 		'praiseNum': 14,
-# 		'booleanPraise': False,
-# 		'galleryStandard': '501x501',
-# 		'nailSuitStatus': 0
-# 	}, {
-# 		'albumsId': 'caf08b48224a479da1fd9e0f73e0bace',
-# 		'waterfallFlowUrl': '/tutu/system/20191031160749697_082981.jpg',
-# 		'waterfallFlowThumbnailUrl': '/tutu/system/20191031160749697_082981.jpg_360x360.jpg',
-# 		'galleryUrl': '/tutu/system/20191031160818995_042194.jpg',
-# 		'galleryThumbnailUrl': '/tutu/system/20191031160818995_042194.jpg_500x500.jpg',
-# 		'albumsTitle': '黑白大咖',
-# 		'authorNickname': 'Mona',
-# 		'authorHeadPortrait': '/tutu/system/20191031160803074_536204.jpg',
-# 		'authorHeadPortraitThumbnail': '/tutu/system/20191031160803074_536204.jpg_100x100.jpg',
-# 		'praiseNum': 12,
-# 		'booleanPraise': False,
-# 		'galleryStandard': '501x501',
-# 		'nailSuitStatus': 0
-# 	}, {
-# 		'albumsId': 'c0f915731cac45379f49e007a0b6f559',
-# 		'waterfallFlowUrl': '/tutu/system/20190620144419322_857009.jpg',
-# 		'waterfallFlowThumbnailUrl': '/tutu/system/20190620144419322_857009.jpg_240x361.jpg',
-# 		'galleryUrl': '/tutu/system/20190620144425738_109728.jpg',
-# 		'galleryThumbnailUrl': '/tutu/system/20190620144425738_109728.jpg_501x501.jpg',
-# 		'albumsTitle': '自然之风',
-# 		'authorNickname': 'Cony',
-# 		'authorHeadPortrait': '/tutu/system/20191015151852271_500489.jpg',
-# 		'authorHeadPortraitThumbnail': '/tutu/system/20191015151852271_500489.jpg_100x100.jpg',
-# 		'praiseNum': 21,
-# 		'booleanPraise': False,
-# 		'galleryStandard': '501x666',
-# 		'nailSuitStatus': 1
-# 	}, {
-# 		'albumsId': 'bdf8d10c5efb4f29a6b4f460dbf0fedf',
-# 		'waterfallFlowUrl': '/tutu/system/20190716114412038_715672.jpg',
-# 		'waterfallFlowThumbnailUrl': '/tutu/system/20190716114412038_715672.jpg_240x361.jpg',
-# 		'galleryUrl': '/tutu/system/20190716114418634_548148.jpg',
-# 		'galleryThumbnailUrl': '/tutu/system/20190716114418634_548148.jpg_501x501.jpg',
-# 		'albumsTitle': '草莓樱桃',
-# 		'authorNickname': 'Una',
-# 		'authorHeadPortrait': '/tutu/system/20190627203208459_480989.jpg',
-# 		'authorHeadPortraitThumbnail': '/tutu/system/20190627203208459_480989.jpg_240x361.jpg',
-# 		'praiseNum': 46,
-# 		'booleanPraise': False,
-# 		'galleryStandard': '501x501',
-# 		'nailSuitStatus': 1
-# 	}, {
-# 		'albumsId': 'd01048a172934569b16076be516fa9ec',
-# 		'waterfallFlowUrl': '/tutu/system/20190620135942814_919815.jpg',
-# 		'waterfallFlowThumbnailUrl': '/tutu/system/20190620135942814_919815.jpg_240x361.jpg',
-# 		'galleryUrl': '/tutu/system/20190620135951064_440294.jpg',
-# 		'galleryThumbnailUrl': '/tutu/system/20190620135951064_440294.jpg_501x501.jpg',
-# 		'albumsTitle': '招财猫猫',
-# 		'authorNickname': 'Cony',
-# 		'authorHeadPortrait': '/tutu/system/20191015150818268_301613.jpg',
-# 		'authorHeadPortraitThumbnail': '/tutu/system/20191015150818268_301613.jpg_100x100.jpg',
-# 		'praiseNum': 23,
-# 		'booleanPraise': False,
-# 		'galleryStandard': '501x666',
-# 		'nailSuitStatus': 1
-# 	}, {
-# 		'albumsId': '0a7307d726884a07b24515bfe4a8bfb4',
-# 		'waterfallFlowUrl': '/tutu/system/20190626211750700_362209.jpg',
-# 		'waterfallFlowThumbnailUrl': '/tutu/system/20190626211750700_362209.jpg_240x361.jpg',
-# 		'galleryUrl': '/tutu/system/20190626211757234_183930.jpg',
-# 		'galleryThumbnailUrl': '/tutu/system/20190626211757234_183930.jpg_501x501.jpg',
-# 		'albumsTitle': '少女蜻蜓',
-# 		'authorNickname': 'Cony',
-# 		'authorHeadPortrait': '/tutu/system/20190625222600779_432342.jpg',
-# 		'authorHeadPortraitThumbnail': '/tutu/system/20190625222600779_432342.jpg_240x361.jpg',
-# 		'praiseNum': 24,
-# 		'booleanPraise': False,
-# 		'galleryStandard': '501x501',
-# 		'nailSuitStatus': 1
-# 	}, {
-# 		'albumsId': '42655714fc5c4fa488ecef7c811019f2',
-# 		'waterfallFlowUrl': '/tutu/system/20190628104630420_623685.jpg',
-# 		'waterfallFlowThumbnailUrl': '/tutu/system/20190628104630420_623685.jpg_240x361.jpg',
-# 		'galleryUrl': '/tutu/system/20190628104641134_822401.jpg',
-# 		'galleryThumbnailUrl': '/tutu/system/20190628104641134_822401.jpg_501x501.jpg',
-# 		'albumsTitle': '爱心五连击',
-# 		'authorNickname': 'Cony',
-# 		'authorHeadPortrait': '/tutu/system/20190625223941164_139129.jpg',
-# 		'authorHeadPortraitThumbnail': '/tutu/system/20190625223941164_139129.jpg_240x361.jpg',
-# 		'praiseNum': 40,
-# 		'booleanPraise': False,
-# 		'galleryStandard': '501x666',
-# 		'nailSuitStatus': 1
-# 	}, {
-# 		'albumsId': 'd221536a5add45779b3d9d0c76b63b78',
-# 		'waterfallFlowUrl': '/tutu/system/20190620143902731_084768.jpg',
-# 		'waterfallFlowThumbnailUrl': '/tutu/system/20190620143902731_084768.jpg_240x361.jpg',
-# 		'galleryUrl': '/tutu/system/20190620143908576_560580.jpg',
-# 		'galleryThumbnailUrl': '/tutu/system/20190620143908576_560580.jpg_501x501.jpg',
-# 		'albumsTitle': '甜美樱桃',
-# 		'authorNickname': 'Cony',
-# 		'authorHeadPortrait': '/tutu/system/20190426182021380_120204.jpg',
-# 		'authorHeadPortraitThumbnail': '/tutu/system/20190426182021380_120204.jpg_240x361.jpg',
-# 		'praiseNum': 33,
-# 		'booleanPraise': True,
-# 		'galleryStandard': '501x666',
-# 		'nailSuitStatus': 1
-# 	}, {
-# 		'albumsId': '48d43bc7df9346ae90dd37036b56c719',
-# 		'waterfallFlowUrl': '/tutu/system/20190711155141826_690850.jpg',
-# 		'waterfallFlowThumbnailUrl': '/tutu/system/20190711155141826_690850.jpg_240x361.jpg',
-# 		'galleryUrl': '/tutu/system/20190711155149702_532305.jpg',
-# 		'galleryThumbnailUrl': '/tutu/system/20190711155149702_532305.jpg_501x501.jpg',
-# 		'albumsTitle': '绝美玫瑰',
-# 		'authorNickname': 'Olia',
-# 		'authorHeadPortrait': '/tutu/system/20190626215407676_360132.jpg',
-# 		'authorHeadPortraitThumbnail': '/tutu/system/20190626215407676_360132.jpg_240x361.jpg',
-# 		'praiseNum': 32,
-# 		'booleanPraise': True,
-# 		'galleryStandard': '501x501',
-# 		'nailSuitStatus': 1
-# 	}, {
-# 		'albumsId': '42043ce596a7450f9a3f8b88c583f906',
-# 		'waterfallFlowUrl': '/tutu/system/20190626141104462_226098.jpg',
-# 		'waterfallFlowThumbnailUrl': '/tutu/system/20190626141104462_226098.jpg_240x361.jpg',
-# 		'galleryUrl': '/tutu/system/20190626141139617_097778.jpg',
-# 		'galleryThumbnailUrl': '/tutu/system/20190626141139617_097778.jpg_501x501.jpg',
-# 		'albumsTitle': '岩石里的花',
-# 		'authorNickname': 'Cony',
-# 		'authorHeadPortrait': '/tutu/system/20190626141117894_191933.jpg',
-# 		'authorHeadPortraitThumbnail': '/tutu/system/20190626141117894_191933.jpg_240x361.jpg',
-# 		'praiseNum': 17,
-# 		'booleanPraise': False,
-# 		'galleryStandard': '501x501',
-# 		'nailSuitStatus': 1
-# 	}, {
-# 		'albumsId': 'f32ce881801d48c1902f9838f9645d93',
-# 		'waterfallFlowUrl': '/tutu/system/20190711145147044_443676.jpg',
-# 		'waterfallFlowThumbnailUrl': '/tutu/system/20190711145147044_443676.jpg_240x361.jpg',
-# 		'galleryUrl': '/tutu/system/20190711145223134_451734.jpg',
-# 		'galleryThumbnailUrl': '/tutu/system/20190711145223134_451734.jpg_501x501.jpg',
-# 		'albumsTitle': '大眼猫咪',
-# 		'authorNickname': 'Una',
-# 		'authorHeadPortrait': '/tutu/system/20190711145205758_774956.jpg',
-# 		'authorHeadPortraitThumbnail': '/tutu/system/20190711145205758_774956.jpg_240x361.jpg',
-# 		'praiseNum': 12,
-# 		'booleanPraise': False,
-# 		'galleryStandard': '501x501',
-# 		'nailSuitStatus': 1
-# 	}, {
-# 		'albumsId': '70fb2bb396974af9b60f2a4d99e0ae5d',
-# 		'waterfallFlowUrl': '/tutu/system/20190711180936611_379494.jpg',
-# 		'waterfallFlowThumbnailUrl': '/tutu/system/20190711180936611_379494.jpg_240x361.jpg',
-# 		'galleryUrl': '/tutu/system/20190711180942447_825015.jpg',
-# 		'galleryThumbnailUrl': '/tutu/system/20190711180942447_825015.jpg_501x501.jpg',
-# 		'albumsTitle': '樱桃波点',
-# 		'authorNickname': 'Cony',
-# 		'authorHeadPortrait': '/tutu/system/20190625224153823_938346.jpg',
-# 		'authorHeadPortraitThumbnail': '/tutu/system/20190625224153823_938346.jpg_240x361.jpg',
-# 		'praiseNum': 26,
-# 		'booleanPraise': False,
-# 		'galleryStandard': '501x501',
-# 		'nailSuitStatus': 1
-# 	}, {
-# 		'albumsId': '539b227e32134e999187b24293f1579b',
-# 		'waterfallFlowUrl': '/tutu/system/20190711143344804_219046.jpg',
-# 		'waterfallFlowThumbnailUrl': '/tutu/system/20190711143344804_219046.jpg_240x361.jpg',
-# 		'galleryUrl': '/tutu/system/20190711143351580_331525.jpg',
-# 		'galleryThumbnailUrl': '/tutu/system/20190711143351580_331525.jpg_501x501.jpg',
-# 		'albumsTitle': 'LookAtMe',
-# 		'authorNickname': 'Mona',
-# 		'authorHeadPortrait': '/tutu/system/20190604170837268_078205.jpg',
-# 		'authorHeadPortraitThumbnail': '/tutu/system/20190604170837268_078205.jpg_240x361.jpg',
-# 		'praiseNum': 23,
-# 		'booleanPraise': False,
-# 		'galleryStandard': '501x501',
-# 		'nailSuitStatus': 1
-# 	}, {
-# 		'albumsId': 'a2ca70b1303b4aa4ad5837c2deaf11aa',
-# 		'waterfallFlowUrl': '/tutu/system/20190711142411169_589025.jpg',
-# 		'waterfallFlowThumbnailUrl': '/tutu/system/20190711142411169_589025.jpg_240x361.jpg',
-# 		'galleryUrl': '/tutu/system/20190711142417175_493491.jpg',
-# 		'galleryThumbnailUrl': '/tutu/system/20190711142417175_493491.jpg_501x501.jpg',
-# 		'albumsTitle': '可爱猫咪',
-# 		'authorNickname': 'Carsey',
-# 		'authorHeadPortrait': '/tutu/system/20191015152236309_680922.jpg',
-# 		'authorHeadPortraitThumbnail': '/tutu/system/20191015152236309_680922.jpg_100x100.jpg',
-# 		'praiseNum': 25,
-# 		'booleanPraise': False,
-# 		'galleryStandard': '501x666',
-# 		'nailSuitStatus': 1
-# 	}, {
-# 		'albumsId': '764f44e47962472a899231da58a432d1',
-# 		'waterfallFlowUrl': '/tutu/system/20191024145350284_667988.jpg',
-# 		'waterfallFlowThumbnailUrl': '/tutu/system/20191024145350284_667988.jpg_360x360.jpg',
-# 		'galleryUrl': '/tutu/system/20191024145406148_551392.jpg',
-# 		'galleryThumbnailUrl': '/tutu/system/20191024145406148_551392.jpg_500x500.jpg',
-# 		'albumsTitle': 'mongmong万圣节',
-# 		'authorNickname': 'Mona',
-# 		'authorHeadPortrait': '/tutu/system/20191024145358070_035676.jpg',
-# 		'authorHeadPortraitThumbnail': '/tutu/system/20191024145358070_035676.jpg_100x100.jpg',
-# 		'praiseNum': 10,
-# 		'booleanPraise': False,
-# 		'galleryStandard': '501x666',
-# 		'nailSuitStatus': 0
-# 	}]
-# }
+test_dict = {
+	'stateCode': 200,
+	'stateMsg': 'OK',
+	'currentPage': 1,
+	'pageSize': 15,
+	'totalNum': 6,
+	'totalPage': 1,
+	'data': [{
+		'id': '345d72cb41154e1a8e1ec66bcda28c26',
+		'albumsId': '1f54943239854c8a8225c6a4e9c5b37b',
+		'uid': '99d50784ad6b413180e180ef26cc83f8',
+		'nickname': '涂涂6714',
+		'headPortrait': 'https://cdn-dev.nailtutu.com/tutu/anjou/headportrait/20191226153320705_559222.png_th_132x132.png',
+		'contentStatus': 1,
+		'content': '标题情况时间北京.',
+		'replyCount': 0,
+		'nextGradeReplyCount': 0,
+		'createTime': '2020-03-12 10:10:22'
+	}, {
+		'id': '5b082af02a00488e9f31df1cd2aff210',
+		'albumsId': '1f54943239854c8a8225c6a4e9c5b37b',
+		'uid': '99d50784ad6b413180e180ef26cc83f8',
+		'nickname': '涂涂6714',
+		'headPortrait': 'https://cdn-dev.nailtutu.com/tutu/anjou/headportrait/20191226153320705_559222.png_th_132x132.png',
+		'contentStatus': 1,
+		'content': '商品社区成功对于产品通过.',
+		'replyCount': 0,
+		'nextGradeReplyCount': 0,
+		'createTime': '2020-03-12 10:09:35'
+	}, {
+		'id': 'b52ef8b867cc4d7c9dbbe5aaa5aa2360',
+		'albumsId': '1f54943239854c8a8225c6a4e9c5b37b',
+		'uid': '99d50784ad6b413180e180ef26cc83f8',
+		'nickname': '涂涂6714',
+		'headPortrait': 'https://cdn-dev.nailtutu.com/tutu/anjou/headportrait/20191226153320705_559222.png_th_132x132.png',
+		'contentStatus': 1,
+		'content': '科技首页作品电脑您的工具.',
+		'replyCount': 0,
+		'nextGradeReplyCount': 0,
+		'createTime': '2020-03-12 10:06:32'
+	}, {
+		'id': 'f9ac2f49b8904e83971c7aaa8abc1654',
+		'albumsId': '1f54943239854c8a8225c6a4e9c5b37b',
+		'uid': '368e2306b72b41b7a88bf784d98da59a',
+		'nickname': '文',
+		'headPortrait': 'https://cdn-dev.nailtutu.com/tutu/anjou/headportrait/20190916150201203_629345.png',
+		'contentStatus': 1,
+		'content': '我分',
+		'replyCount': 0,
+		'nextGradeReplyCount': 0,
+		'createTime': '2019-12-05 14:46:54'
+	}, {
+		'id': 'd4e76527b4ef4a769165d1ba1c7b5829',
+		'albumsId': '1f54943239854c8a8225c6a4e9c5b37b',
+		'uid': '368e2306b72b41b7a88bf784d98da59a',
+		'nickname': '文',
+		'headPortrait': 'https://cdn-dev.nailtutu.com/tutu/anjou/headportrait/20190916150201203_629345.png',
+		'contentStatus': 1,
+		'content': '我的',
+		'replyCount': 0,
+		'nextGradeReplyCount': 0,
+		'createTime': '2019-12-05 14:46:48'
+	}, {
+		'id': 'd81df9af96e8422aa41dc0484e3269ce',
+		'albumsId': '1f54943239854c8a8225c6a4e9c5b37b',
+		'uid': '368e2306b72b41b7a88bf784d98da59a',
+		'nickname': '文',
+		'headPortrait': 'https://cdn-dev.nailtutu.com/tutu/anjou/headportrait/20190916150201203_629345.png',
+		'contentStatus': 1,
+		'content': '我们',
+		'replyCount': 0,
+		'nextGradeReplyCount': 0,
+		'createTime': '2019-12-05 14:46:42'
+	}]
+}
+# content = "科技首页作品电脑您的工具."
 #
-#     deviceID = BU.get_nailSuitStatus_for_1(mm)
-#     print(deviceID)
+# ret = BU.get_commentID(test_dict,content)
+# print(ret)
+#
+# # print(new_list)
+#
+#
+#
+#
+# # result = BU.get_commentID(test_dict["data"],content)
+# # print(result)
 
 
 
