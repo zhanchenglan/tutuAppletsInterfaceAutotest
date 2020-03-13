@@ -75,7 +75,7 @@ def all_case():
 
 def  run(testSuit):
     result = BeautifulReport(testSuit)
-    result.report(filename='lq.html', description='AnjouAppletsAutoTest接口自动化测试报告', log_path="../report")
+    result.report(filename='lq.html', description='tutuAppletsAutoTest接口自动化测试报告', log_path="../report")
     return result
 
 if __name__ == "__main__":
@@ -107,7 +107,7 @@ if __name__ == "__main__":
 
     failureNumber = result.failure_count
     error_failure_number = errorNumber + failureNumber
-    if error_failure_number > 2:
+    if error_failure_number:
         exit(1)
 
 
