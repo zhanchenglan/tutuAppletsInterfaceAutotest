@@ -96,7 +96,7 @@ if __name__ == "__main__":
     area = 1
     system_type = 3
     business_type = 1
-    task_name = "pro-tutuApplets"
+    task_name = "uat-tutuApplets"
     #2 - 执行成功，3 - 执行失败(int类型)
 
     exe_result = 2
